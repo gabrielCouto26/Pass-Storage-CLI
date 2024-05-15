@@ -1,0 +1,12 @@
+version: '3.5'
+
+services:
+  app:
+    build: .
+    volumes: 
+      - ./src/:/usr/src/app/
+      - ./storage.json/:/usr/src/app/storage.json
+    environment:
+      - COMMAND=get
+      - KEY=teste
+    command: ['python', 'main.py']
