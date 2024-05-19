@@ -1,5 +1,7 @@
+import os
 import sys
 from adapters.system_io import SystemIO
+from domain.constants import GET, SET
 
 
 class TerminalIO(SystemIO):
@@ -18,3 +20,10 @@ class TerminalIO(SystemIO):
         self.validate_input()
 
         return self.COMMAND, self.KEY, self.VALUE
+
+    def output(self, result: str) -> None:
+        if self.COMMAND == GET:
+            os.system(f'echo {result} | xclip -selection clipboard')
+            print(f"Valor de {self.KEY} copiado para área de transferẽncia!")
+        elif self.COMMAND == SET:
+            print(f"{self.KEY} salvo com sucesso!")
