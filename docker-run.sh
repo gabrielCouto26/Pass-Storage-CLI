@@ -11,4 +11,5 @@ docker run --rm \
     -e KEY=$KEY \
     -e VALUE=$VALUE \
     -v ./storage.json:/usr/src/app/storage.json \
+    -v ./rsa:/usr/local/pass-database/ \
     pass-storage:latest

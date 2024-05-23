@@ -19,7 +19,5 @@ class LocalFileIO:
         return json.loads(content)
 
     def save(self, content: dict) -> None:
-        json_content = json.dumps(content)
-
         with open(self.file_path, 'w') as file:
-            file.write(json_content)
+            json.dump(content, file)
