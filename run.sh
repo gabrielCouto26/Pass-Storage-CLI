@@ -10,4 +10,6 @@ if [ $SHELL = '-d' ]; then
     bash docker-run.sh $COMMAND $KEY $VALUE
 elif [ $SHELL = '-t' ]; then
     bash terminal-run.sh $COMMAND $KEY $VALUE
+else
+    echo "Comando inválido. Use '-t' para Terminal ou '-d' para Docker"
 fi
