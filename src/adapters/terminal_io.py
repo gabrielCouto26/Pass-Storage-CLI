@@ -11,7 +11,7 @@ class TerminalIO(SystemIO):
     def input(self) -> list[str]:
         try:
             self.COMMAND: str = sys.argv[2]
-            self.KEY: str = sys.argv[3]
+            self.KEY: str = sys.argv[3] if len(sys.argv) >= 4 else None
             self.VALUE: str = sys.argv[4] if len(sys.argv) == 5 else None
         except IndexError as e:
             print('Erro ao extrair parâmetros')
