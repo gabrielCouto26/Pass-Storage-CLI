@@ -1,5 +1,7 @@
+storage.json
 
 # generic
+/dist
 node_modules/
 .node_modules/
 build.json
