@@ -10,5 +10,12 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Gabriel de Lima Couto",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^22.1.0",
+    "typescript": "^5.5.4"
+  },
+  "dependencies": {
+    "commander": "^12.1.0"
+  }
 }
