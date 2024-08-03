@@ -7,12 +7,6 @@ build.json
 coverage/
 internal/
 .settings
-**/.vs
-**/.vscode/*
-!**/.vscode/tasks.json
-!**/.vscode/settings.template.json
-!**/.vscode/launch.template.json
-!**/.vscode/extensions.json
 package-lock.json
 .eslintcache
 /lib/
