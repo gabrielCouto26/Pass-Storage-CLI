@@ -1,10 +1,10 @@
 import { Command } from "commander";
 import FileAdapter from "./adapters/file.js";
-import Storage from "./domain/storage.js";
+import Service from "./domain/service.js";
 
 const program = new Command();
 const fileAdapter = new FileAdapter("./storage.json");
-const storage = new Storage(fileAdapter);
+const service = new Service(fileAdapter);
 
 program
   .name("Pass Encryption")
@@ -17,7 +17,7 @@ program
   .argument("<key>", "key to search")
   .option("-s, --show", "show password")
   .action(async (key, options) => {
-    await storage.get(key, options.show);
+    await service.get(key, options.show);
   });
 
 program
@@ -26,7 +26,7 @@ program
   .argument("<key>", "key for storage")
   .argument("<password>", "password for encryption")
   .action((key, pass, options) => {
-    storage.set(key, pass);
+    service.set(key, pass);
   });
 
 program.parse();

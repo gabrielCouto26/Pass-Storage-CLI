@@ -2,7 +2,7 @@ import { FilePort, FileData } from "../ports/file.js";
 import chalk from "chalk";
 import clipboardy from "clipboardy";
 
-export default class Storage {
+export default class Service {
   adapter: FilePort;
   log: Function;
 
