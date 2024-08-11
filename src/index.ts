@@ -15,9 +15,9 @@ program
   .command("get")
   .description("Get password from a given key")
   .argument("<key>", "key to search")
-  .option("-s, --show <password>", "show password")
-  .action((key, options) => {
-    storage.get(key);
+  .option("-s, --show", "show password")
+  .action(async (key, options) => {
+    await storage.get(key, options.show);
   });
 
 program
