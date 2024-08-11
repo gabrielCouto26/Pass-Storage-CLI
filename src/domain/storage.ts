@@ -13,14 +13,15 @@ export default class Storage {
   get(label: string): void {
     try {
       const data: FileData = this.adapter.readData();
-      if (!data.hasOwnProperty("a"))
-        this.log(chalk.yellow(`No password found for ${label}.`));
-
-      const password = data[label];
-      this.log(chalk.green(password));
+      if (data.hasOwnProperty(label)) {
+        const password = data[label];
+        this.log(chalk.blue(password));
+      } else {
+        this.log(chalk.yellow(`No password found for '${label}'.`));
+      }
     } catch (error) {
       throw new Error(
-        `Error on getting password ${label}. Original error: ${error}`
+        `Error on getting password '${label}'. Original error: ${error}`
       );
     }
   }
