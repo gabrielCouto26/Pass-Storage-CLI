@@ -1,5 +1,5 @@
 import { readFileSync, writeFileSync } from "fs";
-import { FilePort, FileData } from "../ports/file";
+import { FilePort, FileData } from "../ports/file.js";
 
 export default class FileAdapter implements FilePort {
   storagePath: string;

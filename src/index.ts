@@ -1,6 +1,6 @@
 import { Command } from "commander";
-import FileAdapter from "./adapters/file";
-import Storage from "./domain/storage";
+import FileAdapter from "./adapters/file.js";
+import Storage from "./domain/storage.js";
 
 const program = new Command();
 const fileAdapter = new FileAdapter("./storage.json");

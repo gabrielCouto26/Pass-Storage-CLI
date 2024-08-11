@@ -1,20 +1,23 @@
-import { FilePort, FileData } from "../ports/file";
+import { FilePort, FileData } from "../ports/file.js";
+import chalk from "chalk";
 
 export default class Storage {
   adapter: FilePort;
+  log: Function;
 
   constructor(adapter: FilePort) {
     this.adapter = adapter;
+    this.log = console.log;
   }
 
   get(label: string): void {
     try {
       const data: FileData = this.adapter.readData();
       if (!data.hasOwnProperty("a"))
-        console.warn(`No password found for ${label}.`);
+        this.log(chalk.yellow(`No password found for ${label}.`));
 
       const password = data[label];
-      console.log(password);
+      this.log(chalk.green(password));
     } catch (error) {
       throw new Error(
         `Error on getting password ${label}. Original error: ${error}`

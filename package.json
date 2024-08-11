@@ -3,11 +3,13 @@
   "version": "1.0.0",
   "description": "Simple CLI for encrypted passwords backup",
   "main": "src/index.ts",
+  "type": "module",
   "directories": {
     "test": "tests"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile": "rm -r ./dist/ && tsc"
   },
   "author": "Gabriel de Lima Couto",
   "license": "ISC",
@@ -16,6 +18,7 @@
     "typescript": "^5.5.4"
   },
   "dependencies": {
+    "chalk": "^5.3.0",
     "commander": "^12.1.0"
   }
 }
