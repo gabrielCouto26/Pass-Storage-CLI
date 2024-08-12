@@ -1,10 +1,16 @@
 import { Command } from "commander";
 import FileAdapter from "./adapters/file.js";
 import Service from "./domain/service.js";
+import Encryptor from "./domain/encryptor.js";
+
+const key = process.env.ENCRYPT_KEY || "";
 
 const program = new Command();
 const fileAdapter = new FileAdapter("./storage.json");
-const service = new Service(fileAdapter);
+const encryptor = new Encryptor(key);
+const service = new Service(fileAdapter, encryptor);
+
+if (!key) throw new Error("Cannot find encryption key");
 
 program
   .name("Pass Encryption")
@@ -17,7 +23,7 @@ program
   .argument("<key>", "key to search")
   .option("-s, --show", "show password")
   .action(async (key, options) => {
-    await service.get(key, options.show);
+    service.get(key, options.show);
   });
 
 program
@@ -25,7 +31,7 @@ program
   .description("Set password to a given key")
   .argument("<key>", "key for storage")
   .argument("<password>", "password for encryption")
-  .action((key, pass, options) => {
+  .action((key, pass) => {
     service.set(key, pass);
   });
 
