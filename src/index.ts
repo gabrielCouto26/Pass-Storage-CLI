@@ -3,14 +3,14 @@ import FileAdapter from "./adapters/file.js";
 import Service from "./domain/service.js";
 import Encryptor from "./domain/encryptor.js";
 
-const key = process.env.ENCRYPT_KEY || "";
+const key = process.env.PASS_STORAGE_KEY || "";
 
 const program = new Command();
 const fileAdapter = new FileAdapter("./storage.json");
 const encryptor = new Encryptor(key);
 const service = new Service(fileAdapter, encryptor);
 
-if (!key) throw new Error("Cannot find encryption key");
+if (!key) throw new Error("Cannot find PASS_STORAGE_KEY environment variable.");
 
 program
   .name("Pass Encryption")

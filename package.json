@@ -9,7 +9,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "compile": "rm -r ./dist/ && tsc"
+    "compile": "rm -r ./dist/ && tsc",
+    "init": "bash ./initializer.sh"
   },
   "author": "Gabriel de Lima Couto",
   "license": "ISC",
