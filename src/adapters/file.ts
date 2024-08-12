@@ -1,14 +1,14 @@
 import { readFileSync, writeFileSync } from "fs";
-import { FilePort, FileData } from "../ports/file.js";
+import { IFile, IFileData } from "../ports/file.interface.js";
 
-export default class FileAdapter implements FilePort {
+export default class FileAdapter implements IFile {
   storagePath: string;
 
   constructor(storagePath: string) {
     this.storagePath = storagePath;
   }
 
-  readData(): FileData {
+  readData(): IFileData {
     try {
       return JSON.parse(readFileSync(this.storagePath, "utf8"));
     } catch (error) {
@@ -16,7 +16,7 @@ export default class FileAdapter implements FilePort {
     }
   }
 
-  writeData(data: FileData): void {
+  writeData(data: IFileData): void {
     try {
       writeFileSync(this.storagePath, JSON.stringify(data, null, 2));
     } catch (error) {

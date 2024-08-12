@@ -1,14 +1,14 @@
-import { FilePort, FileData } from "../ports/file.js";
+import { IFile, IFileData } from "../ports/file.interface.js";
 import chalk from "chalk";
 import clipboardy from "clipboardy";
 import { IEncryptor } from "./interfaces/encryptor.interface.js";
 
 export default class Service {
-  adapter: FilePort;
+  adapter: IFile;
   encryptor: IEncryptor;
   log: Function;
 
-  constructor(adapter: FilePort, encryptor: IEncryptor) {
+  constructor(adapter: IFile, encryptor: IEncryptor) {
     this.adapter = adapter;
     this.log = console.log;
     this.encryptor = encryptor;
@@ -16,7 +16,7 @@ export default class Service {
 
   get(label: string, show: boolean): void {
     try {
-      const data: FileData = this.adapter.readData();
+      const data: IFileData = this.adapter.readData();
       const labelExists = data.hasOwnProperty(label);
       if (!labelExists) {
         this.log(chalk.yellow(`No password found for '${label}'.`));
@@ -37,7 +37,7 @@ export default class Service {
   set(label: string, password: string): void {
     try {
       const encPassword = this.encryptor.encrypt(password);
-      const data: FileData = this.adapter.readData();
+      const data: IFileData = this.adapter.readData();
       data[label] = encPassword;
       this.adapter.writeData(data);
       this.log(chalk.green("Password stored!"));
