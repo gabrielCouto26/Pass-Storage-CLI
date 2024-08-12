@@ -35,4 +35,12 @@ program
     service.set(key, pass);
   });
 
+program
+  .command("rm")
+  .description("Remove password from a given key")
+  .argument("<key>", "key to remove")
+  .action((key) => {
+    service.remove(key);
+  });
+
 program.parse();

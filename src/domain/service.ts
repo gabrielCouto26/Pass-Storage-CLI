@@ -24,7 +24,9 @@ export default class Service {
       }
       const encPassword = data[label];
       const password = this.encryptor.decrypt(encPassword);
+
       if (show) this.log(chalk.blue(password));
+
       clipboardy.writeSync(password);
       this.log(chalk.green("Password copied to clipboard!"));
     } catch (error) {
@@ -43,7 +45,27 @@ export default class Service {
       this.log(chalk.green("Password stored!"));
     } catch (error) {
       throw new Error(
-        `Error on saving new password for ${label}. Original error: ${error}`
+        `Error on saving new password for '${label}'. Original error: ${error}`
+      );
+    }
+  }
+
+  remove(label: string): void {
+    try {
+      const data: IFileData = this.adapter.readData();
+      const labelExists = Boolean(data[label]);
+
+      if (!labelExists) {
+        this.log(chalk.yellow(`No password found for '${label}'.`));
+        return;
+      }
+
+      delete data[label];
+      this.adapter.writeData(data);
+      this.log(chalk.green("Password removed!"));
+    } catch (error) {
+      throw new Error(
+        `Error on removing password for '${label}'. Original error: ${error}`
       );
     }
   }
