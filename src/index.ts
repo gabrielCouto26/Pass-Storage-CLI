@@ -4,16 +4,15 @@ import Service from "./domain/service.js";
 import Encryptor from "./domain/encryptor.js";
 import StoragePath from "./domain/storagePath.js";
 
-StoragePath.ensureDirectoryExists();
 const key = process.env.PASS_STORAGE_KEY || "";
+if (!key) throw new Error("Cannot find PASS_STORAGE_KEY environment variable.");
+
+StoragePath.ensureDirectoryExists();
 
 const program = new Command();
-console.log("StoragePath.FILE_PATH", StoragePath.FILE_PATH);
 const fileAdapter = new FileAdapter(StoragePath.FILE_PATH);
 const encryptor = new Encryptor(key);
 const service = new Service(fileAdapter, encryptor);
-
-if (!key) throw new Error("Cannot find PASS_STORAGE_KEY environment variable.");
 
 program
   .name("Pass Encryption")
