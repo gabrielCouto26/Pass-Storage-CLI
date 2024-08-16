@@ -20,6 +20,13 @@ program
   .description("Simple CLI for encrypted passwords backup");
 
 program
+  .command("all")
+  .description("Show all passwords")
+  .action(() => {
+    service.all();
+  });
+
+program
   .command("get")
   .description("Get password from a given key")
   .argument("<key>", "key to search")

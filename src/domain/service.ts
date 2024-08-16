@@ -14,6 +14,19 @@ export default class Service {
     this.encryptor = encryptor;
   }
 
+  all(): void {
+    try {
+      const data: IFileData = this.adapter.readData();
+      for (const obj in data) {
+        this.log("•", chalk.green(obj));
+      }
+    } catch (error) {
+      throw new Error(
+        `Error on getting all passwords'. Original error: ${error}`
+      );
+    }
+  }
+
   get(label: string, show: boolean): void {
     try {
       const data: IFileData = this.adapter.readData();
