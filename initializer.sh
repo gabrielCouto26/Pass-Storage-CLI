@@ -2,21 +2,6 @@
 
 echo "Initializing..."
 
-# Checking storage file
-if [ ! -f ./storage.json ]; then
-  echo "No storage file found. Creating file..."
-  if ! touch ./storage.json &>/dev/null; then
-    echo "Error creating storage file."
-    exit 1
-  fi
-
-  echo "{}" >> .storage.json
-
-  echo "Done."
-  echo
-fi
-
-
 # Checking PASS_STORAGE_KEY environemtn variable
 if [ -z "${PASS_STORAGE_KEY}" ]; then
   echo "PASS_STORAGE_KEY environment variable not set."

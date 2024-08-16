@@ -2,11 +2,14 @@ import { Command } from "commander";
 import FileAdapter from "./adapters/file.js";
 import Service from "./domain/service.js";
 import Encryptor from "./domain/encryptor.js";
+import StoragePath from "./domain/storagePath.js";
 
+StoragePath.ensureDirectoryExists();
 const key = process.env.PASS_STORAGE_KEY || "";
 
 const program = new Command();
-const fileAdapter = new FileAdapter("./storage.json");
+console.log("StoragePath.FILE_PATH", StoragePath.FILE_PATH);
+const fileAdapter = new FileAdapter(StoragePath.FILE_PATH);
 const encryptor = new Encryptor(key);
 const service = new Service(fileAdapter, encryptor);
 
