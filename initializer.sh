@@ -5,7 +5,6 @@ echo "Initializing..."
 # Checking PASS_STORAGE_KEY environemtn variable
 if [ -z "${PASS_STORAGE_KEY}" ]; then
   echo "PASS_STORAGE_KEY environment variable not set."
-  # TODO: melhorar isso aqui
   echo "Make sure to set PASS_STORAGE_KEY and try again."
   exit 1
 fi
