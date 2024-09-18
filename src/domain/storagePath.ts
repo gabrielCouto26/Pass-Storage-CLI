@@ -1,14 +1,12 @@
 import path from "path";
 import fs from "fs";
+import os from "os";
 
 const BASE_DIR_NAME = ".pass-encrypted";
 const FILE_NAME = "storage.json";
 
 export default class StoragePath {
-  private static readonly BASE_DIR = path.join(
-    path.resolve("."),
-    BASE_DIR_NAME
-  );
+  private static readonly BASE_DIR = path.join(os.homedir(), BASE_DIR_NAME);
   public static readonly FILE_PATH = path.join(StoragePath.BASE_DIR, FILE_NAME);
 
   public static ensureDirectoryExists(): void {
